@@ -1,0 +1,17 @@
+system /system ext4 ro wait,avb=vbmeta_system,first_stage_mount,avb_keys=/avb/q-gsi.avbpubkey:/avb/r-gsi.avbpubkey:/avb/s-gsi.avbpubkey,
+vendor /vendor ext4 ro wait,avb,first_stage_mount,
+product /product ext4 ro wait,avb,first_stage_mount,
+
+/dev/block/platform/bootdevice/by-name/userdata /data ext4 noatime,nosuid,nodev,noauto_da_alloc,errors=panic wait,check,formattable,quota,reservedsize=128m,formattable,resize,checkpoint=block,filedecryption=aes-256-xts
+/dev/block/platform/bootdevice/by-name/cache /cache ext4 noatime,nosuid,nodev,noauto_da_alloc,discard wait,check,formattable
+/dev/block/platform/bootdevice/by-name/para /misc emmc defaults defaults
+/dev/block/platform/bootdevice/by-name/recovery /recovery emmc defaults first_stage_mount,nofail,
+/dev/block/platform/bootdevice/by-name/boot /boot emmc defaults first_stage_mount,nofail,
+/dev/block/platform/bootdevice/by-name/vbmeta /vbmeta emmc defaults defaults
+/dev/block/platform/bootdevice/by-name/vbmeta_vendor /vbmeta_vendor emmc defaults first_stage_mount,nofail,
+/dev/block/platform/bootdevice/by-name/vbmeta_system /vbmeta_system emmc defaults first_stage_mount,nofail,,avb=vbmeta
+/dev/block/platform/bootdevice/by-name/tee1 /tee1 emmc defaults defaults
+/dev/block/platform/bootdevice/by-name/tee2 /tee2 emmc defaults defaults
+/dev/block/platform/bootdevice/by-name/boot_para /boot_para emmc defaults defaults
+/dev/block/platform/bootdevice/by-name/odmdtbo /odmdtbo emmc defaults defaults
+/dev/block/platform/bootdevice/by-name/dtbo /dtbo emmc defaults default
